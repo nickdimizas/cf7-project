@@ -3,14 +3,25 @@ package gr.aueb.cf.ch12;
 public class StudentDemo {
 
     public static void main(String[] args) {
-        Student student = new Student();
+        Student student = new Student();                                     //Invoke Default Constructor
+        Student bob = new Student(2, "bob", "D." );      //Invoke Overloaded Constructors and populate instance
 
-        student.id = 1;
-        student.firstname = "alice";
-        student.lastname = "W.";
+        student.setId(1);                              //        student.id = 1;
+        student.setFirstname("Alice");                 //        student.firstname = "alice";
+        student.setLastname("W.");                      //        student.lastname = "W.";
 
-        System.out.println("Id: " + student.id);
-        System.out.println("Firstname: " + student.firstname);
-        System.out.println("Lastname: " + student.lastname);
+        System.out.println("Id: " + student.getId());
+        System.out.println("Firstname: " + student.getFirstname());
+        System.out.println("Lastname: " + student.getLastname());
+
+        System.out.println("Id: " + bob.getId());
+        System.out.println("Firstname: " + bob.getFirstname());
+        System.out.println("Lastname: " + bob.getLastname());
+
+        System.out.println("Student instances' count: " + Student.getStudentsCount());
+
+//        System.out.println("Id: " + student.id);
+//        System.out.println("Firstname: " + student.firstname);
+//        System.out.println("Lastname: " + student.lastname);
     }
 }
