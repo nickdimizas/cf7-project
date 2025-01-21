@@ -7,7 +7,7 @@ public class SpeakingSchool {
 
     }
 
-    public void learnToSchool () {
+    public void learnToSpeak() {
         cat.speak();
     }
 }
