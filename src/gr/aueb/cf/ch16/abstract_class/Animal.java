@@ -5,7 +5,7 @@ public abstract class Animal {
     private String name;
 
     public Animal() {
-
+//        super();
     }
 
     public Animal(Long id, String name) {
