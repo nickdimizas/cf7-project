@@ -1,43 +1,41 @@
-package gr.aueb.cf.ch19.streams;
 
-import java.util.List;
-import java.util.Optional;
+package gr.aueb.cf.ch19.maps;
 
-public class FindAndMatch {
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-    public static void main(String[] args) throws Exception {
-        List<String> names = List.of("Alice", "Bob", "Charlie", "David");
+public class Main {
 
-        // Optional is a class/container for wrapping null. Avoid NPE
-        Optional<String> query = names.stream()
-                .filter(name -> name.equals("Alice"))
-                .findFirst();
+    public static void main(String[] args) {
+        Map<String, String> countries = new HashMap<>();
 
-        if (query.isPresent()) {
-            System.out.println("Firstname: " + query.get());
+        // Add
+        countries.put("GR", "Greece");
+        countries.put("EN", "England");
+        countries.put("US", "United States");
+
+        // Update
+        countries.put("US", "U. States");
+
+        // Get
+        String value = countries.get("GR");
+        System.out.println(value);
+
+        // Iterate
+        Iterator<Map.Entry<String, String>> it = countries.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, String> entry = it.next();
+            System.out.println("Key: " + entry.getKey() + "value: " + entry.getValue());
         }
 
-        query.ifPresent(first -> System.out.println("First name" + first));
+        for (Map.Entry<String, String> entry : countries.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + "value: " + entry.getValue());
+        }
 
+        countries.forEach((k, v) -> System.out.println("Key: " + k + "value: " + v));
 
-        // Handling empty values with orElse and orElseThrow
-        String strFirst = names.stream()
-                .filter(name -> name.equals("Bob"))
-                .findFirst().orElse(null);
-
-        String strFirst2 = names.stream()
-                .filter(name -> name.equals("Bob"))
-                .findFirst().orElseThrow(() -> new Exception("Alice not exists"));
-
-
-        // Match
-        boolean isBobExists = names.stream()
-                .anyMatch(name -> name.equals("Bob"));
-
-        boolean allAreBob = names.stream()
-                .allMatch(name -> name.equals("Bob"));
-
-        boolean noneIsBob = names.stream()
-                .noneMatch(name -> name.equals("Bob"));
+        // Remove
+        countries.remove("GR");
     }
 }
